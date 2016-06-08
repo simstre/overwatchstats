@@ -1,2 +1,2 @@
-web: python hello.py 0.0.0.0:80
+web: python hello.py
 
