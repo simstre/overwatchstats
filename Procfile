@@ -1,2 +1,2 @@
-web: python hello.py runserver 0.0.0.0:5000
+web: python hello.py 0.0.0.0:80
 
