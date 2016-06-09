@@ -2,7 +2,7 @@
 from datetime import datetime
 import requests
 from flask import Flask, request, session, url_for, redirect, \
-     render_template, abort, g, flash, _app_ctx_stack
+    render_template, abort, g, flash, _app_ctx_stack
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -23,14 +23,54 @@ players = [
     ('Mitchel', {'handle': 'Remind-11496'})
 ]
 
+
 @app.before_request
 def before_request():
     pass
 
+
 @app.route('/')
 def main():
-    refreshed_data = refresh()
+    # refreshed_data = refresh()
+
+    # Hardcoding data until we can store it in Redis
+    refreshed_data = [('Ben', {'most_played_hero': u'junkrat', 'level': u'56', 'handle': 'Trillium-1317',
+                               'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091D_Border.png',
+                               'portrait': 'img/portrait/junkrat.png'}),
+                      ('Chris', {'most_played_hero': u'junkrat', 'level': u'40', 'handle': 'musa-1521',
+                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091B_Border.png',
+                                 'portrait': 'img/portrait/junkrat.png'}),
+                      ('Lee', {'most_played_hero': u'genji', 'level': u'33', 'handle': 'Taystamah-1107',
+                               'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091B_Border.png',
+                               'portrait': 'img/portrait/genji.png'}),
+                      ('Anna', {'most_played_hero': u'mercy', 'level': u'47', 'handle': 'katana-12677',
+                                'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091C_Border.png',
+                                'portrait': 'img/portrait/mercy.png'}),
+                      ('Jack', {'most_played_hero': u'soldier-76', 'level': u'21', 'handle': 'J4ck-1721',
+                                'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091A_Border.png',
+                                'portrait': 'img/portrait/soldier-76.png'}),
+                      ('Allen', {'most_played_hero': u'reinhardt', 'level': u'17', 'handle': 'alhole-1287',
+                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000919_Border.png',
+                                 'portrait': 'img/portrait/reinhardt.png'}),
+                      ('Kevin', {'most_played_hero': u'roadhog', 'level': u'23', 'handle': 'Humula-1258',
+                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091A_Border.png',
+                                 'portrait': 'img/portrait/roadhog.png'}),
+                      ('Maria', {'most_played_hero': u'dva', 'level': u'36', 'handle': 'Coco-13179',
+                                'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091B_Border.png',
+                                'portrait': 'img/portrait/dva.png'}),
+                      ('Steve', {'most_played_hero': u'mei', 'level': u'7', 'handle': 'Stevethomp-1228',
+                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000918_Border.png',
+                                 'portrait': 'img/portrait/mei.png'}),
+                      ('Karen', {'most_played_hero': u'pharah', 'level': u'2', 'handle': 'kamentari-1337',
+                                'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000918_Border.png',
+                                'portrait': 'img/portrait/pharah.png'}),
+                      ('Mitchel', {'most_played_hero': u'pharah', 'level': u'1', 'handle': 'Remind-11496',
+                                   'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000918_Border.png',
+                                   'portrait': 'img/portrait/pharah.png'})
+                      ]
+
     return render_template('index.html', overwatch_url=overwatch_url, players=refreshed_data)
+
 
 @app.route('/refresh_data')
 def refresh():
@@ -56,8 +96,9 @@ def refresh():
         frame_img_url_pool = response.text[level_frame_scraping_index - 45: level_frame_scraping_index + 50]
         level_frame_img_url = frame_img_url_pool[frame_img_url_pool.find('http'):frame_img_url_pool.find('.png') + 4]
         player[1]['level_frame_img_url'] = level_frame_img_url
-        #break
+        # break
     return players
+
 
 """
 @app.route('/login', methods=['GET', 'POST'])
@@ -81,8 +122,8 @@ def login():
 """
 
 # add some filters to jinja
-#app.jinja_env.filters['datetimeformat'] = format_datetime
-#app.jinja_env.filters['gravatar'] = gravatar_url
+# app.jinja_env.filters['datetimeformat'] = format_datetime
+# app.jinja_env.filters['gravatar'] = gravatar_url
 
-if __name__== "__main__":
+if __name__ == "__main__":
     app.run()

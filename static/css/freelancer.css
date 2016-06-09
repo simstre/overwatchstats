@@ -21,6 +21,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
+    text-decoration: none;
     outline: 0;
     color: #FF7700;
 }
@@ -254,10 +255,39 @@ section.success a.active {
     z-index: 2;
 }
 
-@media(min-width:767px) {
+@media(min-width:500px) {
     #portfolio .portfolio-item {
-        margin: 0 0 30px;
+        height: 220px;
+        width: 300px;
+        margin: 0 0 30px 20px;
     }
+}
+
+.battlenet-handle {
+    color: #8F8F8F;
+    position: absolute;
+    top: 73px;
+    left: 5px;
+}
+
+.level-frame {
+    position: absolute;
+    top: -35px;
+    left: -35px;
+    height: 100px;
+    width: 100px;
+}
+
+.player-name {
+    text-align: right;
+    position: absolute;
+    z-index: 10;
+}
+
+.portrait-hero {
+    position: absolute;
+    left: 20px;
+    top: 0px;
 }
 
 .btn-outline {
