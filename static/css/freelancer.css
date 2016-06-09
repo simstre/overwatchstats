@@ -258,7 +258,7 @@ section.success a.active {
 @media(min-width:500px) {
     #portfolio .portfolio-item {
         height: 220px;
-        width: 300px;
+        width: 370px;
         margin: 0 0 30px 20px;
     }
 }
