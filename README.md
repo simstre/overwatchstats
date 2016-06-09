@@ -22,6 +22,16 @@ Python Flask app for Overwatch dashboard
 
 2016-06-07: project start
 
+---------
+
+###Reference
+Bootstrap theme: http://startbootstrap.com/template-overviews/freelancer/
+Overwatch website: https://playoverwatch.com/en-us/
+
+#######Other stats service based on Blizzard's stats page
+Overwatch tracker: https://overwatchtracker.com/
+Master Overwatch: http://masteroverwatch.com/
+
 
 
 
