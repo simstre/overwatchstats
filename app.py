@@ -34,37 +34,37 @@ def main():
     # refreshed_data = refresh()
 
     # Hardcoding data until we can store it in Redis
-    refreshed_data = [('Ben', {'most_played_hero': u'junkrat', 'level': u'56', 'handle': 'Trillium-1317',
+    refreshed_data = [('Ben', {'most_played_hero': u'junkrat', 'level': 58, 'handle': 'Trillium-1317',
                                'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091D_Border.png',
                                'portrait': 'img/portrait/junkrat.png'}),
-                      ('Chris', {'most_played_hero': u'junkrat', 'level': u'40', 'handle': 'musa-1521',
-                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091B_Border.png',
+                      ('Chris', {'most_played_hero': u'junkrat', 'level': 41, 'handle': 'musa-1521',
+                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091C_Border.png',
                                  'portrait': 'img/portrait/junkrat.png'}),
-                      ('Lee', {'most_played_hero': u'genji', 'level': u'33', 'handle': 'Taystamah-1107',
+                      ('Lee', {'most_played_hero': u'genji', 'level': 33, 'handle': 'Taystamah-1107',
                                'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091B_Border.png',
                                'portrait': 'img/portrait/genji.png'}),
-                      ('Anna', {'most_played_hero': u'mercy', 'level': u'47', 'handle': 'katana-12677',
+                      ('Anna', {'most_played_hero': u'mercy', 'level': 50, 'handle': 'katana-12677',
                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091C_Border.png',
                                 'portrait': 'img/portrait/mercy.png'}),
-                      ('Jack', {'most_played_hero': u'soldier-76', 'level': u'21', 'handle': 'J4ck-1721',
+                      ('Jack', {'most_played_hero': u'soldier-76', 'level': 23, 'handle': 'J4ck-1721',
                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091A_Border.png',
                                 'portrait': 'img/portrait/soldier-76.png'}),
-                      ('Allen', {'most_played_hero': u'reinhardt', 'level': u'17', 'handle': 'alhole-1287',
+                      ('Allen', {'most_played_hero': u'reinhardt', 'level': 17, 'handle': 'alhole-1287',
                                  'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000919_Border.png',
                                  'portrait': 'img/portrait/reinhardt.png'}),
-                      ('Kevin', {'most_played_hero': u'roadhog', 'level': u'23', 'handle': 'Humula-1258',
+                      ('Kevin', {'most_played_hero': u'roadhog', 'level': 23, 'handle': 'Humula-1258',
                                  'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091A_Border.png',
                                  'portrait': 'img/portrait/roadhog.png'}),
-                      ('Maria', {'most_played_hero': u'dva', 'level': u'36', 'handle': 'Coco-13179',
+                      ('Maria', {'most_played_hero': u'dva', 'level': 36, 'handle': 'Coco-13179',
                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x025000000000091B_Border.png',
                                 'portrait': 'img/portrait/dva.png'}),
-                      ('Steve', {'most_played_hero': u'mei', 'level': u'7', 'handle': 'Stevethomp-1228',
+                      ('Steve', {'most_played_hero': u'mei', 'level': 7, 'handle': 'Stevethomp-1228',
                                  'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000918_Border.png',
                                  'portrait': 'img/portrait/mei.png'}),
-                      ('Karen', {'most_played_hero': u'pharah', 'level': u'2', 'handle': 'kamentari-1337',
+                      ('Karen', {'most_played_hero': u'pharah', 'level': 2, 'handle': 'kamentari-1337',
                                 'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000918_Border.png',
                                 'portrait': 'img/portrait/pharah.png'}),
-                      ('Mitchel', {'most_played_hero': u'pharah', 'level': u'1', 'handle': 'Remind-11496',
+                      ('Mitchel', {'most_played_hero': u'pharah', 'level': 1, 'handle': 'Remind-11496',
                                    'level_frame_img_url': u'https://d1u1mce87gyfbn.cloudfront.net/game/playerlevelrewards/0x0250000000000918_Border.png',
                                    'portrait': 'img/portrait/pharah.png'})
                       ]
@@ -89,7 +89,7 @@ def refresh():
         level_string_pool = response.text[level_index + 31: level_index + 34]
         level_ending_index = level_string_pool.find('<')
         level = level_string_pool[:level_ending_index]
-        player[1]['level'] = level
+        player[1]['level'] = int(level)
 
         # Scrapes level and its frame image URL
         level_frame_scraping_index = response.text.find('playerlevelrewards')
@@ -126,4 +126,4 @@ def login():
 # app.jinja_env.filters['gravatar'] = gravatar_url
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=3000)

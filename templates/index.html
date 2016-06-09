@@ -95,7 +95,11 @@
                         <a href="{{ overwatch_url.format(player[1]['handle']) }}" class="portfolio-link">
                             <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" alt="">
                             <div>
-                                <h3 style="color: #383838">{{ player[1]['level'] }}</h3>
+                                {% if player[1]['level'] < 10 %}
+                                    <h3 style="color: #383838; margin-left: 8px;">{{ player[1]['level'] }}</h3>
+                                {% else %}
+                                    <h3 style="color: #383838;">{{ player[1]['level'] }}</h3>
+                                {% endif %}
                                 <img src="{{ player[1]['level_frame_img_url'] }}" class="img-responsive level-frame" alt="">
                             </div>
                             <h1 class="player-name">{{ player[0] }}</h1>
