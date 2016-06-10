@@ -84,7 +84,7 @@ def scrape_and_store():
     for player in players:
         today_timestamp = time.strftime("%Y%m%d")
         response = requests.get(overwatch_url.format(player[1]['handle']))
-        with open('{}_{}'.format(player[0], today_timestamp)) as _f_handle:
+        with open('/airg/logs/overwatchstats/scraped_data/{}_{}'.format(player[0], today_timestamp)) as _f_handle:
             _f_handle.write(response.text)
     return 'Storing successful'
 
