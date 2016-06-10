@@ -13,13 +13,13 @@ app.config.from_object(__name__)
 
 players = [
     ('Ben', {'handle': 'Trillium-1317'}),
-    ('Chris', {'handle': 'musa-1521'}),
-    ('Lee', {'handle': 'Taystamah-1107'}),
     ('Anna', {'handle': 'katana-12677'}),
-    ('Jack', {'handle': 'J4ck-1721'}),
-    ('Allen', {'handle': 'alhole-1287'}),
-    ('Kevin', {'handle': 'Humula-1258'}),
+    ('Chris', {'handle': 'musa-1521'}),
     ('Maria', {'handle': 'Coco-13179'}),
+    ('Lee', {'handle': 'Taystamah-1107'}),
+    ('Jack', {'handle': 'J4ck-1721'}),
+    ('Kevin', {'handle': 'Humula-1258'}),
+    ('Allen', {'handle': 'alhole-1287'}),
     ('Steven', {'handle': 'Stevethomp-1228'}),
     ('TY', {'handle': 'TheOnlyTY-1643'}),
     ('Karen', {'handle': 'kamentari-1337'}),
