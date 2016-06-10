@@ -20,6 +20,7 @@ players = [
     ('Kevin', {'handle': 'Humula-1258'}),
     ('Maria', {'handle': 'Coco-13179'}),
     ('Steve', {'handle': 'Stevethomp-1228'}),
+    ('TY', {'handle': 'TheOnlyTY-1643'}),
     ('Karen', {'handle': 'kamentari-1337'}),
     ('Mitchel', {'handle': 'Remind-11496'})
 ]
