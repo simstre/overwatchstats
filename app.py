@@ -1,5 +1,6 @@
 import requests, json
 from redis import Redis
+import time
 from flask import Flask, session, url_for, redirect, render_template
 
 
@@ -43,7 +44,7 @@ def main():
 @app.route('/refresh_data')
 def refresh():
     """
-    This scrapes the data and stores the data in Redis
+    This scrapes the data and stores the data in Redis for display
 
     :return:
     """
@@ -71,6 +72,21 @@ def refresh():
         player[1]['level_frame_img_url'] = level_frame_img_url
         redis_store.hset('players_list', player[0], json.dumps(player[1]))
     return 'Refresh successful'
+
+
+@app.route('/scrape_and_store')
+def scrape_and_store():
+    """
+    This scrapes the data and stores as a file for future tracking purpose
+
+    :return:
+    """
+    for player in players:
+        today_timestamp = time.strftime("%Y%m%d")
+        response = requests.get(overwatch_url.format(player[1]['handle']))
+        with open('{}_{}'.format(player[0], today_timestamp)) as _f_handle:
+            _f_handle.write(response.text)
+    return 'Storing successful'
 
 
 if __name__ == "__main__":
