@@ -34,7 +34,7 @@
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav id="nav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -64,7 +64,8 @@
     </nav>
 
     <!-- Header -->
-    <header>
+    <header id="header">
+        <div id="gif-background" style='position:absolute;'><iframe src='https://gfycat.com/ifr/AggressiveMinorEstuarinecrocodile' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -191,6 +192,54 @@
     <script src="{{ url_for('static', filename='js/cbpAnimatedHeader.js') }}"></script>
 
     <script src="{{ url_for('static', filename='js/freelancer.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var header = $('#header');
+            var gif_bg = $('#gif-background');
+            var nav = $('#nav');
+            var aspect_ratio = 16 / 9; // x / y
+
+            function on_header_resize() {
+                var nav_height = nav.outerHeight();
+                var height = header.outerHeight() - nav_height;
+                var width = header.width();
+
+                var vid_width, vid_height;
+
+                var top, left;
+
+                var ar = width / height;
+
+                if (ar >= aspect_ratio) {
+                    vid_width = width;
+                    vid_height = 9 * width / 16;
+
+                    top = (vid_height - height) / 2;
+                    top = -top + nav_height;
+                    left = 0;
+                } else {
+                    vid_height = height;
+                    vid_width = 16 * height / 9;
+
+                    top = nav_height;
+                    left = (vid_width - width) / 2;
+                    left = -left;
+                }
+
+                gif_bg.css({
+                    'width': vid_width + 'px',
+                    'height': vid_height + 'px',
+                    'top': top + 'px',
+                    'left': left + 'px'
+                });
+            }
+
+            on_header_resize();
+
+            $(window).resize(on_header_resize);
+        });
+    </script>
 
 </body>
 

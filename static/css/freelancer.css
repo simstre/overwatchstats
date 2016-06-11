@@ -203,6 +203,18 @@ section.success a.active {
         padding-top: 75px;
     }
 }
+#header {
+    position: relative;
+    overflow: hidden;
+}
+
+#gif-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
 
 #portfolio .portfolio-item {
     right: 0;
@@ -255,7 +267,7 @@ section.success a.active {
     z-index: 2;
 }
 
-@media(min-width:500px) {
+@media(min-width:400px) {
     #portfolio .portfolio-item {
         height: 220px;
         width: 370px;
