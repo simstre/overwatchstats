@@ -20,8 +20,8 @@ players = [
     ('Jack', {'handle': 'J4ck-1721'}),
     ('Kevin', {'handle': 'Humula-1258'}),
     ('Allen', {'handle': 'alhole-1287'}),
-    ('Steven', {'handle': 'Stevethomp-1228'}),
     ('TY', {'handle': 'TheOnlyTY-1643'}),
+    ('Steven', {'handle': 'Stevethomp-1228'}),
     ('Karen', {'handle': 'kamentari-1337'}),
     ('Mitchel', {'handle': 'Remind-11496'})
 ]
