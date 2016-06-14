@@ -103,10 +103,12 @@
                                 {% endif %}
                                 <img src="{{ player[1]['level_frame_img_url'] }}" class="img-responsive level-frame" alt="">
                             </div>
-                            <span>KDA: {{ player[1]['kda'] }}</span>
-                            <span>Winrate: {{ player[1]['winrate'] }}</span>
                             <h1 class="player-name">{{ player[0] }}</h1>
                             <span class="battlenet-handle"><br/>{{ player[1]['handle'] }}</span>
+                            <div id="stat-summary">
+                                <span>KDA ratio: {{ player[1]['kda'] }}</span><br/>
+                                <span>Winrate: {{ player[1]['winrate'] }}%</span>
+                            </div>
                         </a>
                     </div>
                 {% endfor %}

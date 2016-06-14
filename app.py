@@ -70,20 +70,19 @@ def refresh():
             continue
         games_won = response.text[response.text.find('Games Won', 70000):].split("</td>")[1][4:].replace(',', '')
         games_played = response.text[response.text.find('Games Played', 70000):].split("</td>")[1][4:].replace(',', '')
-        player[1]['winrate'] = int(games_won)/int(games_played)
+        player[1]['winrate'] = '{:.1f}'.format(float(games_won)/float(games_played) * 100)
 
         # Scrapes and calculates KDA
+        defensive_assists = 0
         if response.text.find('<td>Defensive Assists</td>') != -1:
             defensive_assists = response.text[response.text.find('<td>Defensive Assists</td>'):].split('</td>')[1][4:].replace(',', '')
-        else:
-            defensive_assists = 0
+        offensive_assists = 0
         if response.text.find('<td>Defensive Assists</td>') != -1:
             offensive_assists = response.text[response.text.find('<td>Offensive Assists</td>'):].split('</td>')[1][4:].replace(',', '')
-        else:
-            offensive_assists = 0
+
         kills = response.text[response.text.find('<td>Eliminations</td>'):].split('</td>')[1][4:].replace(',', '')
         deaths = response.text[response.text.find('<td>Deaths</td>'):].split('</td>')[1][4:].replace(',', '')
-        player[1]['kda'] = (int(defensive_assists) + int(offensive_assists) + int(kills)) / int(deaths)
+        player[1]['kda'] = '{:.2f}'.format((float(defensive_assists) + float(offensive_assists) + float(kills)) / float(deaths))
 
         # Stores into Redis
         redis_store.hset('players_list', player[0], json.dumps(player[1]))
