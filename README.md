@@ -7,7 +7,7 @@ Python Flask app for Overwatch dashboard
 - Highlight links/preview/page/list
 - Path to update highlights
 - Links to different stats service
-- Overview of some stats
+- ~~Overview of some stats~~
 - Graphs for trends
 - Portrait of most played in the last x days instead of overall
 - CSS cleanup
@@ -15,6 +15,14 @@ Python Flask app for Overwatch dashboard
 ---------
 
 ###Patch note
+2016-06-14: KDA ratio and winrate added below each player's name
+
+![player list with KDA and winrate](http://imgur.com/6RJlepJ)
+
+2016-06-10: GIF background added
+
+![gif backgrounded front page](http://imgur.com/riFEtGB)
+
 2016-06-08: initial version with populated player list and links to their stats page on playoverwatch.com
 
 ![front page](http://i.imgur.com/9VuNFId.png)
