@@ -17,11 +17,11 @@ Python Flask app for Overwatch dashboard
 ###Patch note
 2016-06-14: KDA ratio and winrate added below each player's name
 
-![player list with KDA and winrate](http://imgur.com/6RJlepJ)
+![player list with KDA and winrate](http://i.imgur.com/6RJlepJ.png)
 
 2016-06-10: GIF background added
 
-![gif backgrounded front page](http://imgur.com/riFEtGB)
+![gif backgrounded front page](http://i.imgur.com/riFEtGB.png)
 
 2016-06-08: initial version with populated player list and links to their stats page on playoverwatch.com
 
