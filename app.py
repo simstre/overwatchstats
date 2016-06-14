@@ -52,24 +52,40 @@ def refresh():
         response = requests.get(overwatch_url.format(player[1]['handle']))
 
         # Scrapes Most played hero
-        portrait_img_starting_index = response.text.find('cloudfront.net/hero/')
-        portrait_img_ending_index = response.text.find('/overlay-portrait.png')
-        portrait_hero = response.text[portrait_img_starting_index + 20: portrait_img_ending_index]
-        player[1]['most_played_hero'] = portrait_hero
-        player[1]['portrait'] = 'img/portrait/{}.png'.format(portrait_hero)
+        most_played_hero = response.text[response.text.find('cloudfront.net/hero/'):].split('/')[2]
+        player[1]['most_played_hero'] = most_played_hero
+        player[1]['portrait'] = 'img/portrait/{}.png'.format(most_played_hero)
 
         # Scrapes level
-        level_index = response.text.find('<div class="u-vertical-center"')
-        level_string_pool = response.text[level_index + 31: level_index + 34]
-        level_ending_index = level_string_pool.find('<')
-        level = level_string_pool[:level_ending_index]
-        player[1]['level'] = int(level)
+        player[1]['level'] = int(response.text[response.text.find('<div class="u-vertical-center'):].split('>')[1][:-5])
 
-        # Scrapes level and its frame image URL
-        level_frame_scraping_index = response.text.find('playerlevelrewards')
-        frame_img_url_pool = response.text[level_frame_scraping_index - 45: level_frame_scraping_index + 50]
-        level_frame_img_url = frame_img_url_pool[frame_img_url_pool.find('http'):frame_img_url_pool.find('.png') + 4]
-        player[1]['level_frame_img_url'] = level_frame_img_url
+        # Scrapes level frame image URL
+        player[1]['level_frame_img_url'] = response.text[response.text.find('playerlevelrewards') - 45:].split('(')[1].split(')')[0]
+
+        #############################################################################################################
+        ##### Below scraping won't work if the player is new, all the calculation based on scraping goes below ######
+
+        # Scrapes and calculates winrate
+        if response.text.find('Games Won', 70000) == -1:
+            continue
+        games_won = response.text[response.text.find('Games Won', 70000):].split("</td>")[1][4:].replace(',', '')
+        games_played = response.text[response.text.find('Games Played', 70000):].split("</td>")[1][4:].replace(',', '')
+        player[1]['winrate'] = int(games_won)/int(games_played)
+
+        # Scrapes and calculates KDA
+        if response.text.find('<td>Defensive Assists</td>') != -1:
+            defensive_assists = response.text[response.text.find('<td>Defensive Assists</td>'):].split('</td>')[1][4:].replace(',', '')
+        else:
+            defensive_assists = 0
+        if response.text.find('<td>Defensive Assists</td>') != -1:
+            offensive_assists = response.text[response.text.find('<td>Offensive Assists</td>'):].split('</td>')[1][4:].replace(',', '')
+        else:
+            offensive_assists = 0
+        kills = response.text[response.text.find('<td>Eliminations</td>'):].split('</td>')[1][4:].replace(',', '')
+        deaths = response.text[response.text.find('<td>Deaths</td>'):].split('</td>')[1][4:].replace(',', '')
+        player[1]['kda'] = (int(defensive_assists) + int(offensive_assists) + int(kills)) / int(deaths)
+
+        # Stores into Redis
         redis_store.hset('players_list', player[0], json.dumps(player[1]))
     return 'Refresh successful'
 
