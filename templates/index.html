@@ -106,8 +106,13 @@
                             <h1 class="player-name">{{ player[0] }}</h1>
                             <span class="battlenet-handle"><br/>{{ player[1]['handle'] }}</span>
                             <div id="stat-summary">
-                                <span>KDA ratio: {{ player[1]['kda'] }}</span><br/>
-                                <span>Winrate: {{ player[1]['winrate'] }}%</span>
+                                {% if player[1].get('kda') and player[1].get('winrate') %}
+                                    <span>KDA ratio: {{ player[1]['kda'] }}</span><br/>
+                                    <span>Winrate: {{ player[1]['winrate'] }}%</span>
+                                {% else %}
+                                    <span>KDA ratio: N/A</span>
+                                    <span>Winrate: N/A</span>
+                                {% endif %}
                             </div>
                         </a>
                     </div>
