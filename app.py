@@ -39,7 +39,8 @@ def main():
     for player in players:
         player_dict = json.loads(redis_store.hget('players_list', player[0]))
         data.append((player[0], player_dict))
-    return render_template('index.html', overwatch_url=overwatch_url, players=data)
+    data_sorted_by_level = sorted(data, key=lambda player: player[1]['level'], reverse=True)
+    return render_template('index.html', overwatch_url=overwatch_url, players=data_sorted_by_level)
 
 
 @app.route('/refresh_data')
