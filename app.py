@@ -13,14 +13,15 @@ app.config.from_object(__name__)
 
 players = [
     ('Ben', {'handle': 'Trillium-1317'}),
-    ('Anna', {'handle': 'katana-12677'}),
     ('Chris', {'handle': 'musa-1521'}),
-    ('Maria', {'handle': 'Coco-13179'}),
+    ('Anna', {'handle': 'katana-12677'}),
     ('Lee', {'handle': 'Taystamah-1107'}),
     ('Jack', {'handle': 'J4ck-1721'}),
     ('Kevin', {'handle': 'Humula-1258'}),
     ('Allen', {'handle': 'alhole-1287'}),
+    ('Maria', {'handle': 'Coco-13179'}),
     ('TY', {'handle': 'TheOnlyTY-1643'}),
+    ('Terry', {'handle': 'teemrobo-1324'}),
     ('Steven', {'handle': 'Stevethomp-1228'}),
     #('Perry', {'handle': 'quintonFOX-1789'}),
     ('Karen', {'handle': 'kamentari-1337'}),
@@ -37,8 +38,12 @@ def main():
     """
     data = []
     for player in players:
-        player_dict = json.loads(redis_store.hget('players_list', player[0]))
-        data.append((player[0], player_dict))
+        try:
+            player_dict = json.loads(redis_store.hget('players_list', player[0]))
+            data.append((player[0], player_dict))
+        except:
+            continue
+
     data_sorted_by_level = sorted(data, key=lambda player: player[1]['level'], reverse=True)
     return render_template('index.html', overwatch_url=overwatch_url, players=data_sorted_by_level)
 
