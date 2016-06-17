@@ -294,6 +294,14 @@ section.success a.active {
     width: 100px;
 }
 
+.rank-img {
+    position: absolute;
+    top: 7px;
+    left: -54px;
+    height: 40%;
+    width: 40%;
+}
+
 .player-name {
     text-align: right;
     position: absolute;

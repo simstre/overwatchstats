@@ -44,7 +44,7 @@ def main():
         except:
             continue
 
-    data_sorted_by_level = sorted(data, key=lambda player: player[1]['level'], reverse=True)
+    data_sorted_by_level = sorted(data, key=lambda player: player[1]['games_played'], reverse=True)
     return render_template('index.html', overwatch_url=overwatch_url, players=data_sorted_by_level)
 
 
@@ -68,16 +68,27 @@ def refresh():
             player[1]['level'] = int(response.text[response.text.find('<div class="u-vertical-center'):].split('>')[1][:-5])
 
             # Scrapes level frame image URL
-            player[1]['level_frame_img_url'] = response.text[response.text.find('playerlevelrewards') - 45:].split('(')[1].split(')')[0]
+            #player[1]['level_frame_img_url'] = response.text[response.text.find('playerlevelrewards') - 45:].split('(')[1].split(')')[0]
+            player[1]['level_frame_img_url'] = response.text[response.text.find('class="player-level"') - 100:].split('(')[1].split(')')[0]
+
+            # Scrapes rank image URL
+            if response.text.find('class="player-rank"') > 0:
+                player[1]['rank_img_url'] = response.text[response.text.find('class="player-rank"') - 100:].split('(')[1].split(')')[0]
 
             #############################################################################################################
             ##### Below scraping won't work if the player is new, all the calculation based on scraping goes below ######
 
             # Scrapes and calculates winrate
             if response.text.find('Games Won', 70000) == -1:
+                player[1]['games_won'] = 0
+                player[1]['games_played'] = 0
+                redis_store.hset('players_list', player[0], json.dumps(player[1]))
                 continue
+
             games_won = response.text[response.text.find('Games Won', 70000):].split("</td>")[1][4:].replace(',', '')
             games_played = response.text[response.text.find('Games Played', 70000):].split("</td>")[1][4:].replace(',', '')
+            player[1]['games_won'] = int(games_won)
+            player[1]['games_played'] = int(games_played)
             player[1]['winrate'] = '{:.1f}'.format(float(games_won)/float(games_played) * 100)
 
             # Scrapes and calculates KDA
@@ -90,6 +101,10 @@ def refresh():
 
             kills = response.text[response.text.find('<td>Eliminations</td>'):].split('</td>')[1][4:].replace(',', '')
             deaths = response.text[response.text.find('<td>Deaths</td>'):].split('</td>')[1][4:].replace(',', '')
+            player[1]['kills'] = kills
+            player[1]['offensive_assists'] = offensive_assists
+            player[1]['defensive_assists'] = defensive_assists
+            player[1]['deaths'] = deaths
             player[1]['kda'] = '{:.2f}'.format((float(defensive_assists) + float(offensive_assists) + float(kills)) / float(deaths))
 
             # Stores into Redis

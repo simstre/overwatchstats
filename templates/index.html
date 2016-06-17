@@ -102,6 +102,9 @@
                                     <h3 style="color: #383838;">{{ player[1]['level'] }}</h3>
                                 {% endif %}
                                 <img src="{{ player[1]['level_frame_img_url'] }}" class="img-responsive level-frame" alt="">
+                                {% if player[1].get('rank_img_url') %}
+                                    <img src="{{ player[1]['rank_img_url'] }}" class="img-responsive rank-img" alt="">
+                                {% endif %}
                             </div>
                             <h1 class="player-name">{{ player[0] }}</h1>
                             <span class="battlenet-handle"><br/>{{ player[1]['handle'] }}</span>
