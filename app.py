@@ -1,6 +1,7 @@
 import requests, json
 from redis import Redis
-import time
+from datetime import datetime
+from pytz import timezone
 from flask import Flask, session, url_for, redirect, render_template
 
 
@@ -114,7 +115,7 @@ def refresh():
         except Exception as e:
             # log exception and move on
             pass
-    redis_store.set('last_updated', time.strftime("%B %d %I:%M%p", time.localtime()))
+    redis_store.set('last_updated', datetime.now(timezone('US/Pacific')).strftime("%B %d %I:%M%p"))
     return 'Refresh successful'
 
 
@@ -126,7 +127,7 @@ def scrape_and_store():
     :return:
     """
     for player in players:
-        today_timestamp = time.strftime("%Y%m%d")
+        today_timestamp = datetime.now().strftime("%Y%m%d")
         response = requests.get(overwatch_url.format(player[1]['handle']))
         with open('/airg/logs/overwatchstats/scraped_data/{}_{}'.format(player[0], today_timestamp), 'w') as _f_handle:
             _f_handle.write(response.text.encode('ascii', 'ignore'))

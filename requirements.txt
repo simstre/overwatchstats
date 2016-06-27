@@ -30,6 +30,7 @@ pygobject==3.8.2
 pygpgme==0.3
 pyliblzma==0.5.3
 python-augeas==0.4.1
+pytz==2016.4
 pyudev==0.15
 pyxattr==0.5.1
 redis==2.10.5
