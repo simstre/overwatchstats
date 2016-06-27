@@ -114,7 +114,7 @@ def refresh():
         except Exception as e:
             # log exception and move on
             pass
-    redis_store.set('last_updated', time.strftime("%B %d %H:%M"))
+    redis_store.set('last_updated', time.strftime("%B %d %I:%M%p", time.localtime()))
     return 'Refresh successful'
 
 
