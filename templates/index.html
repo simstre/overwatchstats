@@ -94,7 +94,11 @@
                     <div class="col-sm-4 portfolio-item">
                         <!-- <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal"> -->
                         <a href="{{ overwatch_url.format(player[1]['handle']) }}" class="portfolio-link">
-                            <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" alt="">
+                            {% if player[1]['most_played_hero'] == 'roadhog' %}
+                                <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" style="left:40px;" alt="">
+                            {% else %}
+                                <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" alt="">
+                            {% endif %}
                             <div>
                                 {% if player[1]['level'] < 10 %}
                                     <h3 style="color: #383838; margin-left: 8px;">{{ player[1]['level'] }}</h3>
