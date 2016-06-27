@@ -44,8 +44,9 @@ def main():
         except:
             continue
 
+    last_updated = redis_store.get('last_updated')
     data_sorted_by_level = sorted(data, key=lambda player: player[1]['games_played'], reverse=True)
-    return render_template('index.html', overwatch_url=overwatch_url, players=data_sorted_by_level)
+    return render_template('index.html', overwatch_url=overwatch_url, players=data_sorted_by_level, last_updated=last_updated)
 
 
 @app.route('/refresh_data')
@@ -113,7 +114,7 @@ def refresh():
         except Exception as e:
             # log exception and move on
             pass
-
+    redis_store.set('last_updated', time.strftime("%B %d %H:%M"))
     return 'Refresh successful'
 
 

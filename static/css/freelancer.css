@@ -271,6 +271,11 @@ section.success a.active {
     z-index: 2;
 }
 
+#last-updated {
+    color: #B0B0B0;
+    font-style: italic;
+}
+
 @media(min-width:400px) {
     #portfolio .portfolio-item {
         height: 220px;
