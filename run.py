@@ -1,4 +1,5 @@
 import requests, json
+import scrapy
 from redis import Redis
 from datetime import datetime
 from pytz import timezone
