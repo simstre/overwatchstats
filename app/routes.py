@@ -57,6 +57,11 @@ def refresh():
             if response.text.find('class="player-rank"') > 0:
                 player[1]['rank_img_url'] = response.text[response.text.find('class="player-rank"') - 100:].split('(')[1].split(')')[0]
 
+            # Scrapes competitive skill rating
+            if response.text.find('competitive-rank') > 0:
+                player[1]['competitive_skill_rating'] = response.text[response.text.find('competitive-rank') + 15:].split('<')[2].split('>')[1].split('<')[0]
+                player[1]['competitive_skill_rating_img'] = response.text[response.text.find('competitive-rank') + 15:].split('<')[1].split('"')[1]
+
             #############################################################################################################
             ##### Below scraping won't work if the player is new, all the calculation based on scraping goes below ######
 

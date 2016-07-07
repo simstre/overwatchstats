@@ -299,6 +299,10 @@ section.success a.active {
     width: 100px;
 }
 
+.stat-preview {
+    font-size: 0.9em;
+}
+
 .rank-img {
     position: absolute;
     top: 21px;

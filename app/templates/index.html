@@ -116,11 +116,14 @@
                             <span class="battlenet-handle"><br/>{{ player[1]['handle'] }}</span>
                             <div id="stat-summary">
                                 {% if player[1].get('kda') and player[1].get('winrate') %}
-                                    <span>KDA ratio: {{ player[1]['kda'] }}</span><br/>
-                                    <span>Winrate: {{ player[1]['winrate'] }}%</span>
+                                    <span class="stat-preview">KDA ratio: {{ player[1]['kda'] }}</span><br/>
+                                    <span class="stat-preview">Winrate: {{ player[1]['winrate'] }}%</span><br/>
                                 {% else %}
-                                    <span>KDA ratio: N/A</span><br/>
-                                    <span>Winrate: N/A</span>
+                                    <span class="stat-preview">KDA ratio: N/A</span><br/>
+                                    <span class="stat-preview">Winrate: N/A</span><br/>
+                                {% endif %}
+                                {% if player[1].get('competitive_skill_rating') %}
+                                    <span class="stat-preview">Competitive skill rating: {{ player[1]['competitive_skill_rating'] }}</span>
                                 {% endif %}
                             </div>
                         </a>
