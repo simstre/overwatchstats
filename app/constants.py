@@ -99,6 +99,7 @@ PLAYERS = [
     ('Terry', {'handle': 'teemrobo-1324'}),
     ('Steven', {'handle': 'Stevethomp-1228'}),
     ('Perry', {'handle': 'quintonFOX-1789'}),
+    ('Edward', {'handle': 'pigeon-1559'}),
     #('Karen', {'handle': 'kamentari-1337'}),
     #('Mitchel', {'handle': 'Remind-11496'})
 ]
