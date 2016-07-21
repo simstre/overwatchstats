@@ -2,6 +2,8 @@
 REDIS_URL = "chriss-fun-1.office.airg.lan"
 
 OVERWATCH_URL = 'https://playoverwatch.com/en-us/career/pc/us/{}'
+MASTEROVERWATCH_URL = 'http://masteroverwatch.com/profile/pc/us/{}?update=1'
+OVERWATCHTRACKER_URL = 'https://overwatchtracker.com/profile/pc/us/{}?update=1'
 
 HERO_DATA = {
     "Reaper": {
