@@ -303,6 +303,14 @@ section.success a.active {
     font-size: 0.9em;
 }
 
+.profile-stats {
+    font-size: 0.9em;
+}
+
+.competitive-stat {
+    color: #0087E0;
+}
+
 .rank-img {
     position: absolute;
     top: 13px;
@@ -322,6 +330,21 @@ section.success a.active {
     left: 20px;
     top: 0px;
     z-index: -1;
+}
+
+#profile-stat-table td.stat-title {
+    text-align: left;
+    padding-left: 20px;
+}
+
+#profile-stat-table {
+    width: 400px;
+    margin: 0 auto 20px auto;
+}
+
+#profile-stat-table td, #profile-stat-table th {
+    width: 33.3%;
+    text-align: center;
 }
 
 .btn-outline {

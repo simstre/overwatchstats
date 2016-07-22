@@ -15,6 +15,10 @@ Python Flask app for Overwatch dashboard
 ---------
 
 ###Patch note
+2016-07-22: Detailed stat page linked to each player with links to stat sites
+
+2016-07-15: Competitive stats added
+
 2016-06-14: KDA ratio and winrate added below each player's name
 
 ![player list with KDA and winrate](http://i.imgur.com/6RJlepJ.png)

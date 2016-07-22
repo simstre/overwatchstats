@@ -28,7 +28,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body id="page-top" class="index">
@@ -92,8 +91,8 @@
             <div class="row">
                 {% for player in players %}
                     <div class="col-sm-4 portfolio-item">
-                        <!-- <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal"> -->
-                        <a href="{{ overwatch_url.format(player[1]['handle']) }}" class="portfolio-link">
+                        <a href="#{{ player[1]['handle'] }}" class="portfolio-link" data-toggle="modal">
+                        <!-- <a href="{{ overwatch_url.format(player[1]['handle']) }}" class="portfolio-link"> -->
                             {% if player[1]['most_played_hero'] == 'roadhog' %}
                                 <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" style="left:40px;" alt="">
                             {% elif player[0] == 'Allen' %}
@@ -177,7 +176,7 @@
 
     <!-- Portfolio Modals -->
     {% for player in players %}
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="{{ player[1]['handle'] }}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-content">
                 <div class="close-modal" data-dismiss="modal">
                     <div class="lr">
@@ -191,19 +190,85 @@
                             <div class="modal-body">
                                 <h2>{{ player[0] }}</h2>
                                 <hr class="star-primary">
-                                <img src="/static/img/portrait/junkrat.png" class="img-responsive img-centered" alt="">
-                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                                <ul class="list-inline item-details">
-                                    <li>Client:
-                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+
+                                <div class="profile-stats">
+                                    {% if player[1].get('competitive_skill_rating') %}
+                                        <span class="competitive-stat">Competitive skill rating: {{ player[1]['competitive_skill_rating'] }}</span>
+                                    {% endif %}
+                                    <table style="margin-top:20px" id="profile-stat-table">
+                                        <tr>
+                                            <th>
+
+                                            </th>
+                                            <th>
+                                                Quick Play
+                                            </th>
+                                            <th>
+                                                Competitive Play
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat-title">
+                                                KDA ratio
+                                            </td>
+                                            <td>
+                                                {{ player[1]['kda'] }}
+                                            </td>
+                                            <td>
+                                                {% if player[1].get('competitive_kda') %}
+                                                    {{ player[1]['competitive_kda'] }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat-title">
+                                                Win rate
+                                            </td>
+                                            <td>
+                                                {{ player[1]['winrate'] }}%
+                                            </td>
+                                            <Td>
+                                                {% if player[1].get('competitive_winrate') %}
+                                                    {{ player[1]['competitive_winrate'] }}%
+                                                {% endif %}
+                                            </Td>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat-title">
+                                                Card rate
+                                            </td>
+                                            <td>
+                                                {{ player[1]['card_rate'] }}%
+                                            </td>
+                                            <Td>
+                                                {% if player[1].get('competitive_card_rate') %}
+                                                    {{ player[1]['competitive_card_rate'] }}%
+                                                {% endif %}
+                                            </Td>
+                                        </tr>
+                                        <tr>
+                                            <td class="stat-title">
+                                                Medal per game
+                                            </td>
+                                            <td>
+                                                {{ player[1]['medal_per_game'] }}
+                                            </td>
+                                            <Td>
+                                                {% if player[1].get('competitive_medal_per_game') %}
+                                                    {{ player[1]['competitive_medal_per_game'] }}
+                                                {% endif %}
+                                            </Td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <ul class="list-inline item-details" id="stat-links">
+                                    <li><strong><a href="{{ overwatch_url.format(player[1]['handle']) }}">Overwatch site</a>
                                         </strong>
                                     </li>
-                                    <li>Date:
-                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <li><strong><a href="{{ masterow_url.format(player[1]['handle']) }}">Master Overwatch</a>
                                         </strong>
                                     </li>
-                                    <li>Service:
-                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <li><strong><a href="{{ owtracker_url.format(player[1]['handle']) }}">Overwatch Tracker</a>
                                         </strong>
                                     </li>
                                 </ul>
