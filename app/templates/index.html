@@ -96,6 +96,8 @@
                         <a href="{{ overwatch_url.format(player[1]['handle']) }}" class="portfolio-link">
                             {% if player[1]['most_played_hero'] == 'roadhog' %}
                                 <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" style="left:40px;" alt="">
+                            {% elif player[0] == 'Allen' %}
+                                <img src="http://vignette1.wikia.nocookie.net/pokemontowerdefense/images/2/2c/Golbat.png/revision/latest?cb=20110503235825" class="img-responsive portrait-hero" style="height:75%; width: 55%; top: 20px; left:120px; " alt="">
                             {% else %}
                                 <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" alt="">
                             {% endif %}
