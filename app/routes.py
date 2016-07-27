@@ -73,20 +73,3 @@ def scrape_and_store():
         with open('/airg/logs/overwatchstats/scraped_data/{}_{}'.format(player[0], today_timestamp), 'w') as _f_handle:
             _f_handle.write(response.text.encode('ascii', 'ignore'))
     return 'Storing successful'
-
-
-@app.route('/ping_stat_sites')
-def ping_sites():
-    """
-    Pings popular OW stats tracking sites once a day to make them track our daily stats
-
-    :return:
-    """
-    for player in PLAYERS:
-        # Making a hit to popular OW stat sites so that they have daily data for all airG players
-        try:
-            response = requests.get(MASTEROVERWATCH_URL.format(player[1]['handle']))
-            response = requests.get(OVERWATCHTRACKER_URL.format(player[1]['handle']))
-        except:
-            continue
-    return 'poking complete'
