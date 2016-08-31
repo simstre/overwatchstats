@@ -27,7 +27,7 @@ def main():
             continue
 
     last_updated = redis_store.get('last_updated')
-    data_sorted_by_level = sorted(data, key=lambda player: player[1]['games_won'], reverse=True)
+    data_sorted_by_level = sorted(data, key=lambda player: player[1]['level'], reverse=True)
     return render_template('index.html', overwatch_url=OVERWATCH_URL, players=data_sorted_by_level, last_updated=last_updated, masterow_url=MASTEROVERWATCH_URL, owtracker_url=OVERWATCHTRACKER_URL)
 
 

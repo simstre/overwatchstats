@@ -98,17 +98,14 @@
                             {% else %}
                                 <img src="{{ url_for('static', filename=player[1]['portrait']) }}" class="img-responsive portrait-hero" alt="">
                             {% endif %}
-                            <div>
+                            <span id="label-level">LEVEL</span>
+                            <div style="">
                                 {% if player[1]['level'] < 10 %}
-                                    <h3 style="color: #383838; margin-left: 8px;">{{ player[1]['level'] }}</h3>
+                                    <h3 class="level-display" style="margin-left: 8px;">{{ player[1]['level'] }}</h3>
                                 {% elif 9 < player[1]['level'] < 20 or player[1]['level'] % 10 == 1 %}
-                                    <h3 style="color: #383838; margin-left: 2px;">{{ player[1]['level'] }}</h3>
+                                    <h3 class="level-display" style="margin-left: 2px;">{{ player[1]['level'] }}</h3>
                                 {% else %}
-                                    <h3 style="color: #383838; margin-left: -1px">{{ player[1]['level'] }}</h3>
-                                {% endif %}
-                                <img src="{{ player[1]['level_frame_img_url'] }}" class="img-responsive level-frame" alt="">
-                                {% if player[1].get('rank_img_url') %}
-                                    <img src="{{ player[1]['rank_img_url'] }}" class="img-responsive rank-img" alt="">
+                                    <h3 class="level-display" style="margin-left: -1px">{{ player[1]['level'] }}</h3>
                                 {% endif %}
                             </div>
                             <h1 class="player-name">{{ player[0] }}</h1>

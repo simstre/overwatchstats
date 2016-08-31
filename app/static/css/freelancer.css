@@ -217,7 +217,7 @@ section.success a.active {
 }
 
 #stat-summary {
-    padding: 80px 0 0 5px;
+    padding: 115px 0 0 5px;
 }
 
 #portfolio .portfolio-item {
@@ -276,6 +276,15 @@ section.success a.active {
     font-style: italic;
 }
 
+#label-level {
+    position: absolute;
+    color: #CFCFCF;
+    top: 10px;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: bold;
+}
+
 @media(min-width:400px) {
     #portfolio .portfolio-item {
         height: 220px;
@@ -287,7 +296,7 @@ section.success a.active {
 .battlenet-handle {
     color: #8F8F8F;
     position: absolute;
-    top: 73px;
+    top: 72px;
     left: 5px;
 }
 
@@ -307,6 +316,13 @@ section.success a.active {
     font-size: 0.9em;
 }
 
+.level-display {
+    font-size: 2em;
+    color: #383838;
+    position: absolute;
+    margin: 20px 0 0 60px !important;
+}
+
 .competitive-stat {
     color: #0087E0;
 }
@@ -323,6 +339,7 @@ section.success a.active {
     text-align: right;
     position: absolute;
     z-index: 10;
+    margin-top: 60px !important;
 }
 
 .portrait-hero {

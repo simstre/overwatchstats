@@ -1,4 +1,4 @@
-
+from app.constants import RANK_IMAGE_LIST
 
 def _scrape_quickplay_data(response, player):
     # Scrapes Most played hero
@@ -10,12 +10,15 @@ def _scrape_quickplay_data(response, player):
     player[1]['level'] = int(response.text[response.text.find('<div class="u-vertical-center'):].split('>')[1][:-5])
 
     # Scrapes level frame image URL
-    #player[1]['level_frame_img_url'] = response.text[response.text.find('playerlevelrewards') - 45:].split('(')[1].split(')')[0]
     player[1]['level_frame_img_url'] = response.text[response.text.find('class="player-level"') - 100:].split('(')[1].split(')')[0]
 
     # Scrapes rank image URL
     if response.text.find('class="player-rank"') > 0:
         player[1]['rank_img_url'] = response.text[response.text.find('class="player-rank"') - 100:].split('(')[1].split(')')[0]
+        for rank_img_tuple in RANK_IMAGE_LIST:
+            for image_url in rank_img_tuple[0]:
+                if player[1]['rank_img_url'].find(image_url) > 0:
+                    player[1]['level'] += rank_img_tuple[1]
 
     #############################################################################################################
     ##### Below scraping won't work if the player is new, all the calculation based on scraping goes below ######
