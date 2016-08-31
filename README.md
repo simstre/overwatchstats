@@ -15,6 +15,10 @@ Python Flask app for Overwatch dashboard
 ---------
 
 ###Patch note
+2016-08-31: Level is calculated based on rank image URL, removed level and rank images
+ 
+![player list with new look](http://imgur.com/a/yAO9y)
+
 2016-07-22: Detailed stat page linked to each player with links to stat sites
 
 2016-07-15: Competitive stats added
