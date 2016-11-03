@@ -17,6 +17,7 @@ RANK_IMAGE_LIST = [
         '0x0250000000000929_Rank.png',
         '0x025000000000092B_Rank.png',
         '0x025000000000094C_Rank.png',
+        '0x0250000000000950_Rank.png',
      ],
      100
     ),
@@ -169,6 +170,7 @@ PLAYERS = [
     ('Steven', {'handle': 'Stevethomp-1228'}),
     ('Perry', {'handle': 'quintonFOX-1789'}),
     ('Ed', {'handle': 'pigeon-1559'}),
+    ('Ed 2', {'handle': 'Pigwidgeon-11718'}),
     #('Karen', {'handle': 'kamentari-1337'}),
     #('Mitchel', {'handle': 'Remind-11496'})
 ]
