@@ -30,7 +30,13 @@ def _scrape_quickplay_data(response, player):
         return player
 
     games_won = response.text[response.text.find('Games Won', 70000):].split("</td>")[1][4:].replace(',', '')
-    games_played = response.text[response.text.find('Games Played', 70000):].split("</td>")[1][4:].replace(',', '')
+    # Since they removed this, gotta hack to figure it out using one of the stats
+    # I'm using damage done
+    #games_played = response.text[response.text.find('Games Played', 70000):].split("</td>")[1][4:].replace(',', '')
+    damage_done = response.text[response.text.find('<td>Damage Done</td>'):].split('<td>')[2][:-14].replace(',', '')
+    avg_damage_done = response.text[response.text.find('<td>Damage Done - Average</td>'):].split('<td>')[2][:-14].replace(',', '')
+    games_played = int(int(damage_done) / int(avg_damage_done))
+
     player[1]['games_won'] = int(games_won)
     player[1]['games_played'] = int(games_played)
     player[1]['winrate'] = '{:.1f}'.format(float(games_won)/float(games_played) * 100)
