@@ -73,7 +73,7 @@ def _scrape_competitive_data(response, player):
     player[1]['competitive_skill_rating'] = response.text[response.text.find('competitive-rank') + 15:].split('<')[2].split('>')[1].split('<')[0]
     player[1]['competitive_skill_rating_img'] = response.text[response.text.find('competitive-rank') + 15:].split('<')[1].split('"')[1]
 
-    competitive_context = response.text[response.text.find('<div id="competitive-play">'):]
+    competitive_context = response.text[response.text.find('<div id="competitive"'):]
 
     competitive_games_won = competitive_context[competitive_context.find('Games Won</td>'):].split("<td>")[1].split('<')[0].replace(',', '')
     competitive_games_played = competitive_context[competitive_context.find('Games Played</td>'):].split("<td>")[1].split('<')[0].replace(',', '')

@@ -48,6 +48,7 @@ def refresh():
 
             # Stores into Redis
             redis_store.hset('players_list', player[0], json.dumps(player[1]))
+
         except Exception as e:
             # log exception and move on
             pass
