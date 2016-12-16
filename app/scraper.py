@@ -2,7 +2,9 @@ from app.constants import RANK_IMAGE_LIST
 
 def _scrape_quickplay_data(response, player):
     # Scrapes Most played hero
-    most_played_hero = response.text[response.text.find('akamaihd.net/hero/'):].split('/')[2]
+    most_played_hero = response.text[response.text.find('data-hero-competitive'):].split('"')[1]
+    if not most_played_hero:
+        most_played_hero = response.text[response.text.find('data-hero-quickplay'):].split('"')[1]
     player[1]['most_played_hero'] = most_played_hero
     player[1]['portrait'] = 'img/portrait/{}.png'.format(most_played_hero)
 
