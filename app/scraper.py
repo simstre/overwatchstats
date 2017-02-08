@@ -1,4 +1,4 @@
-from app.constants import RANK_IMAGE_LIST
+from app.constants import RANK_IMAGE_LIST, LEVEL_IMAGE_LIST
 
 def _scrape_quickplay_data(response, player):
     # Scrapes Most played hero
@@ -13,6 +13,10 @@ def _scrape_quickplay_data(response, player):
 
     # Scrapes level frame image URL
     player[1]['level_frame_img_url'] = response.text[response.text.find('class="player-level"') - 100:].split('(')[1].split(')')[0]
+    for level_img_tuple in LEVEL_IMAGE_LIST:
+        for image_url in level_img_tuple[0]:
+            if player[1]['level_frame_img_url'].find(image_url) > 0:
+                player[1]['level'] += level_img_tuple[1]
 
     # Scrapes rank image URL
     if response.text.find('class="player-rank"') > 0:
