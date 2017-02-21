@@ -9,7 +9,11 @@ RANK_IMAGE_URL_PATH = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelreward
 
 LEVEL_IMAGE_LIST = [
     ([
-        '0x0250000000000956_Border.png'
+        '0x0250000000000956_Border.png',
+        '0x025000000000095B_Border.png',
+        '0x025000000000095D_Border.png',
+        '0x025000000000095D_Border.png',
+        '0x025000000000095D_Border.png'
      ],
      600
     ),
