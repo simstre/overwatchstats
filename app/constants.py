@@ -7,23 +7,6 @@ OVERWATCHTRACKER_URL = 'https://overwatchtracker.com/profile/pc/us/{}?update=1'
 
 RANK_IMAGE_URL_PATH = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
 
-LEVEL_IMAGE_LIST = [
-    ([
-        '0x0250000000000956_Border.png',
-        '0x025000000000095B_Border.png',
-        '0x025000000000095D_Border.png',
-        '0x025000000000095D_Border.png',
-        '0x025000000000095D_Border.png'
-     ],
-     600
-    ),
-    ([
-
-     ],
-     1200
-    ),
-]
-
 RANK_IMAGE_LIST = [
     ([
         '0x0250000000000922_Rank.png',
@@ -63,6 +46,7 @@ RANK_IMAGE_LIST = [
         '0x0250000000000949_Rank.png',
         '0x0250000000000945_Rank.png',
         '0x025000000000094D_Rank.png',
+        '0x0250000000000952_Rank.png'
      ],
      300
     ),
