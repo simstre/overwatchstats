@@ -221,5 +221,6 @@ PLAYERS = [
     ('Ed 2', {'handle': 'Pigwidgeon-11718'}),
     ('Daniel', {'handle': 'adee2000-1904'}),
     ('Lee 2', {'handle': 'zaryamain-1872'}),
-    ('Chris 2', {'handle': 'skyyehh-1910'})
+    ('Chris 2', {'handle': 'skyyehh-1910'}),
+    ('Catherine', {'handle': 'zii-1831'})
 ]
