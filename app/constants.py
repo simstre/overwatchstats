@@ -219,7 +219,6 @@ PLAYERS = [
     ('TY', {'handle': 'TheOnlyTY-1643'}),
     ('Terry', {'handle': 'teemrobo-1324'}),
     ('Steven', {'handle': 'Stevethomp-1228'}),
-    ('Perry', {'handle': 'quintonFOX-1789'}),
     ('Ed', {'handle': 'pigeon-1559'}),
     ('Ed 2', {'handle': 'Pigwidgeon-11718'}),
     ('Daniel', {'handle': 'adee2000-1904'}),
