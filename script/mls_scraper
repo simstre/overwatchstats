@@ -1,0 +1,78 @@
+import sys
+import requests
+import smtplib
+
+
+def scrape_new_listings(cities, number_of_days_old, min_price, max_price):
+    """
+    Scrapes listings on Zolo.ca and return new listings
+
+    :param cities:              target cities, of type list
+    :param number_of_days_old:  age of the listing on Zolo.com
+    :param min_price:           minimum price
+    :param max_price:           maximum price
+    :return:
+    """
+    targets = []
+
+    for city in cities:
+        target_url = "https://www.zolo.ca/index.php?has_photos=2&days_on_zolo={number_of_days_old}&ptype_house=1&min_price={min_price}&max_price={max_price}&min_beds=3&min_baths=2&min_sqft=3000&filter=1&sarea={city}".format(city=city, min_price=min_price, max_price=max_price, number_of_days_old=number_of_days_old)
+        raw_data = requests.get(target_url)
+        listings = raw_data.text[raw_data.text.find('<section id="gallery"'):]
+        if listings.find('<strong>Oops!</strong> No homes match your search.') > -1:
+            continue
+
+        while True:
+            starting_index_per_listing = listings.find('<article class="card-listing')
+            if starting_index_per_listing < 0:
+                break
+
+            ending_index_per_listing = listings.find('</article>')
+            property_info = listings[starting_index_per_listing:ending_index_per_listing]
+
+            address = property_info[property_info.find('<span class="street" itemprop="streetAddress">') + 46:property_info.find('</span>, <span class="city"')]
+            city = property_info[property_info.find('<span class="city" itemprop="addressLocality">') + 46:property_info.find('</span>, <span class="province')]
+            posting_link = property_info[property_info.find('<a href=') + 9:property_info.find('class="address link-secondary') - 2]
+
+            targets.append({'address': address, 'city': city, 'url': posting_link})
+
+            listings = listings[listings.find('</article>') + 20:]
+
+    return targets
+
+
+def construct_email_body(recipient, cities, content):
+    message = """From: imchrissim@gmail.com
+To: {recipient}
+MIME-Version: 1.0
+Content-type: text/html
+Subject: New listings in {cities}
+
+<h3>New listings</h3><br/>
+{content}
+""".format(recipient=str(recipient), cities=cities, content=content)
+
+    return message
+
+
+if __name__ == '__main__':
+    cities = ['Burnaby', 'Coquitlam']
+    new_listings = scrape_new_listings(cities, 3, 1500000, 2100000)
+    if not new_listings:
+        sys.exit(0)
+
+    formatted_listings = ""
+    for listing in new_listings:
+        formatted_listings += ("<a href={link}>{address}, {city}</a><br/>".format(link=listing.get('url'), address=listing.get('address'), city=listing.get('city')))
+
+    sender = 'imchrissim@gmail.com'
+    recipient = ['imchrissim@gmail.com']
+    formatted_cities = ", ".join([city for city in cities])
+    message = construct_email_body(recipient, formatted_cities, formatted_listings)
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.ehlo()
+    server.starttls()
+    server.login('giranhunter@gmail.com', '9uRr7AUYp0cv')
+    server.sendmail(sender, recipient, message)
+    server.close()
