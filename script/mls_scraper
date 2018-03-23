@@ -57,7 +57,7 @@ Subject: New listings in {cities}
 
 if __name__ == '__main__':
     cities = ['Burnaby', 'Coquitlam']
-    new_listings = scrape_new_listings(cities, 3, 1500000, 2100000)
+    new_listings = scrape_new_listings(cities, 2, 1500000, 2100000)
     if not new_listings:
         sys.exit(0)
 
